@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: Review
+  datasource:
+    url: jdbc:mysql://localhost:3306/review
+    username: root
+    password: Akash@44
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8083
