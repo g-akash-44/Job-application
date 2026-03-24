@@ -42,8 +42,8 @@ public class CompanyController
         return new ResponseEntity<String>(cs.deletecmpybyid(id),HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<Optional<Company>> getbyid(@RequestParam Long id)
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Optional<Company>> getbyid(@PathVariable Long id)
     {
         return new ResponseEntity<Optional<Company>>(cs.getcmpybyid(id),HttpStatus.OK);
     }
