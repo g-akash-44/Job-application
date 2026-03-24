@@ -14,7 +14,7 @@ public interface JobService
 
     public List<jobwithcompanyDTO> getall();
 
-    public Optional<Jobs> searchbyid(Long id);
+    public jobwithcompanyDTO searchbyid(Long id);
 
     public String changebyid(Long id);
 

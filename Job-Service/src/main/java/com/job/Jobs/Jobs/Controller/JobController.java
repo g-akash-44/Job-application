@@ -32,9 +32,9 @@ public class JobController
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Optional<Jobs>> searchbyid(@RequestParam Long id)
+    public ResponseEntity<jobwithcompanyDTO> searchbyid(@RequestParam Long id)
     {
-        return new ResponseEntity<Optional<Jobs>>(js.searchbyid(id),HttpStatus.ACCEPTED);
+        return new ResponseEntity<jobwithcompanyDTO>(js.searchbyid(id),HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/update")

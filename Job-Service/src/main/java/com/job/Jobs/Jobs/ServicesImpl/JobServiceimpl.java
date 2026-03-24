@@ -20,6 +20,9 @@ public class JobServiceimpl implements JobService
     @Autowired
     private Jobrepo jr;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     public String create(Jobs jobs)
     {
         jr.save(jobs);
@@ -45,15 +48,15 @@ public class JobServiceimpl implements JobService
         {
             jc.setJob(j);
         }
-        RestTemplate rs=new RestTemplate();
-        Company c=rs.getForObject("http://localhost:8082/company/get?id="+ j.getCompanyId(), Company.class);
+        Company c=restTemplate.getForObject("http://COMPANY:8082/company/get?id="+ j.getCompanyId(), Company.class);
         jc.setComp(c);
         return jc;
     }
 
-    public Optional<Jobs> searchbyid(Long id)
+    public jobwithcompanyDTO searchbyid(Long id)
     {
-        return jr.findById(id);
+        Jobs j=jr.findById(id).get();
+        return converttoDTO(j);
     }
 
     public String changebyid(Long id)
