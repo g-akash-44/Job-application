@@ -6,6 +6,7 @@ import com.job.Jobs.Jobs.Repository.Jobrepo;
 import com.job.Jobs.Jobs.Service.JobService;
 import com.job.Jobs.Jobs.dto.jobwithcompanyDTO;
 import com.job.Jobs.Jobs.external.Company;
+import com.job.Jobs.Jobs.mapper.Jobtocompmapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,6 +20,9 @@ public class JobServiceimpl implements JobService
 {
     @Autowired
     private Jobrepo jr;
+
+    @Autowired
+    private Jobtocompmapper jc;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -43,14 +47,8 @@ public class JobServiceimpl implements JobService
 
     private jobwithcompanyDTO converttoDTO(Jobs j)
     {
-        jobwithcompanyDTO jc=new jobwithcompanyDTO();
-        if(j!=null)
-        {
-            jc.setJob(j);
-        }
         Company c=restTemplate.getForObject("http://COMPANY:8082/company/get?id="+ j.getCompanyId(), Company.class);
-        jc.setComp(c);
-        return jc;
+        return jc.tojobwithcompDTO(j,c);
     }
 
     public jobwithcompanyDTO searchbyid(Long id)
