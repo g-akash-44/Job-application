@@ -3,10 +3,13 @@ package Review.Controller;
 
 import Review.Entity.Review;
 import Review.Service.ReviewService;
+import Review.dto.ReviewwithcompanyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/review")
@@ -22,13 +25,13 @@ public class ReviewController
     }
 
     @GetMapping("/get/{rid}")
-    public ResponseEntity<Review> getreviewbycid(@PathVariable Long rid)
+    public ResponseEntity<ReviewwithcompanyDTO> getreviewbyid(@PathVariable Long rid)
     {
-        return new ResponseEntity<Review>(rs.getreviewbyid(rid),HttpStatus.OK);
+        return new ResponseEntity<ReviewwithcompanyDTO>(rs.getreviewbyid(rid),HttpStatus.OK);
     }
 
     @PutMapping("/update/{rid}")
-    public ResponseEntity<String> updatereviewbycid(@PathVariable Long rid)
+    public ResponseEntity<String> updatereviewbyid(@PathVariable Long rid)
     {
         return new ResponseEntity<String>(rs.updatereviewbyid(rid),HttpStatus.ACCEPTED);
     }
@@ -37,5 +40,11 @@ public class ReviewController
     public ResponseEntity<String> deletereview(@PathVariable Long rid)
     {
         return new ResponseEntity<String>(rs.deletereviewbyid(rid),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<List<ReviewwithcompanyDTO>> getallreviews()
+    {
+        return new ResponseEntity<List<ReviewwithcompanyDTO>>(rs.getallreviews(),HttpStatus.OK);
     }
  }
