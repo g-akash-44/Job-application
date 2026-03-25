@@ -3,12 +3,13 @@ package com.job.Jobs.Jobs.mapper;
 import com.job.Jobs.Jobs.Entity.Jobs;
 import com.job.Jobs.Jobs.dto.jobwithcompanyDTO;
 import com.job.Jobs.Jobs.external.Company;
+import com.job.Jobs.Jobs.external.Review;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Jobtocompmapper
 {
-    public jobwithcompanyDTO tojobwithcompDTO(Jobs j, Company c)
+    public jobwithcompanyDTO tojobwithcompDTO(Jobs j, Company c, Review review)
     {
         jobwithcompanyDTO jobwithcompanyDTO=new jobwithcompanyDTO();
         jobwithcompanyDTO.setId(j.getId());
@@ -19,6 +20,7 @@ public class Jobtocompmapper
         jobwithcompanyDTO.setMaxSalary(j.getMaxSalary());
         jobwithcompanyDTO.setCompanyId(j.getCompanyId());
         jobwithcompanyDTO.setCompany(c);
+        jobwithcompanyDTO.setReview(review);
         return jobwithcompanyDTO;
     }
 }

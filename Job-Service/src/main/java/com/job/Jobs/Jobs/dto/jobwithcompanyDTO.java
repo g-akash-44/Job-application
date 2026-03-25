@@ -3,6 +3,7 @@ package com.job.Jobs.Jobs.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.job.Jobs.Jobs.external.Company;
+import com.job.Jobs.Jobs.external.Review;
 
 @JsonPropertyOrder({
         "id",
@@ -12,7 +13,8 @@ import com.job.Jobs.Jobs.external.Company;
         "maxSalary",
         "location",
         "companyId",
-        "company"
+        "company",
+        "review"
 })
 public class jobwithcompanyDTO {
 
@@ -24,6 +26,7 @@ public class jobwithcompanyDTO {
     private String location;
     private Long companyId;
     private Company company;
+    private Review review;;
 
     public Long getId() {
         return id;
@@ -87,5 +90,13 @@ public class jobwithcompanyDTO {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
     }
 }

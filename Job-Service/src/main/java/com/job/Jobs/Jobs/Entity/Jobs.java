@@ -11,6 +11,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "Jobs")
 @Entity
 public class Jobs
 {
@@ -23,6 +24,7 @@ public class Jobs
     private String maxSalary;
     private String location;
     private Long companyId;
+    private Long reviewId;
 
     public Long getId() {
         return id;
@@ -78,5 +80,13 @@ public class Jobs
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public Long getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
     }
 }
