@@ -1,6 +1,8 @@
 package com.job.Jobs.Jobs.ServicesImpl;
 
 
+import com.job.Jobs.Jobs.Clients.CompanyClient;
+import com.job.Jobs.Jobs.Clients.ReviewClients;
 import com.job.Jobs.Jobs.Entity.Jobs;
 import com.job.Jobs.Jobs.Repository.Jobrepo;
 import com.job.Jobs.Jobs.Service.JobService;
@@ -28,6 +30,12 @@ public class JobServiceimpl implements JobService
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private CompanyClient cc;
+
+    @Autowired
+    private ReviewClients rc;
+
     public String create(Jobs jobs)
     {
         jr.save(jobs);
@@ -48,8 +56,8 @@ public class JobServiceimpl implements JobService
 
     private jobwithcompanyDTO converttoDTO(Jobs j)
     {
-        Company c=restTemplate.getForObject("http://COMPANY:8082/company/get?id="+ j.getCompanyId(), Company.class);
-        Review r=restTemplate.getForObject("http://REVIEW:8083/review/get/"+ j.getReviewId(), Review.class);
+        Company c=cc.getcompanybyid(j.getCompanyId());
+        Review r=rc.getreviewbyid(j.getReviewId());
         return jc.tojobwithcompDTO(j,c,r);
     }
 
