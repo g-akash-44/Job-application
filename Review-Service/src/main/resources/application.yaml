@@ -2,9 +2,9 @@ spring:
   application:
     name: Review
   datasource:
-    url: jdbc:mysql://localhost:3306/review
-    username: root
-    password: Akash@44
+    url: ${DB_URL}
+    username: ${DB_NAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
